@@ -17,7 +17,8 @@ get_active_vpns() {
     for path in /sys/class/net/*; do
         [ -d "$path" ] || continue
         local iface=${path##*/}
-        # skip interfaces that are explicitly down (tun/wg report "unknown" when up)
+        
+        # skip down interfaces 
         [ "$(cat "$path/operstate" 2>/dev/null)" = "down" ] && continue
 
         case $iface in
@@ -31,7 +32,7 @@ get_active_vpns() {
         esac
     done
 
-    # WARP: ask warp-cli if installed, since the interface may exist while disconnected
+    # if we have warp cli use it in case not detected by interfaces
     if command -v warp-cli >/dev/null 2>&1; then
         timeout 2 warp-cli status 2>/dev/null | grep -q "Connected" && _add_vpn "Cloudflare WARP"
     elif [ "$warp_iface" = 1 ]; then
@@ -41,14 +42,12 @@ get_active_vpns() {
     echo "${found:-None}"
 }
 
-# barbelos-browser: Returns the default browser name using xdg-settings, or "Unknown".
 get_default_browser() {
     if command -v xdg-settings >/dev/null 2>&1; then
         local desktop_file
         desktop_file=$(xdg-settings get default-web-browser 2>/dev/null)
         if [ -n "$desktop_file" ]; then
             local name="${desktop_file%.desktop}"
-            # Normalize common desktop names into readable labels
             case "${name,,}" in
                 *firefox*)        echo "Firefox" ;;
                 *google-chrome*)  echo "Google Chrome" ;;
