@@ -44,7 +44,7 @@
         {
             "type": "command",
             "key": "└─ \udb82\udc25 Opsec Level",
-            "text": "./opsec-level.sh"
+            "text": "opsec-level"
         },
         {
             "type": "custom",
