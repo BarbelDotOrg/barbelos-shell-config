@@ -40,7 +40,7 @@ zstyle ':completion:*' rehash true
 
 # pluhgins management
 _src() { [[ -r $1 ]] && source "$1" }
-_src /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
+_src /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 _src /usr/share/zsh/plugins/zsh-autopair/autopair.zsh
 _src /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 _src /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
