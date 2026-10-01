@@ -4,18 +4,30 @@ pkgver=1.0
 pkgrel=1
 pkgdesc="BarbelOS default shell (zsh, starship and fastfetch) configuration"
 arch=('any')
-license=('AGPLv3')
+license=('AGPL-3.0-or-later')
+url='https://github.com/BarbelDotOrg/barbelos-shell-config'
 depends=('zsh' 'starship' 'fastfetch' 'fzf' 'eza' 'bat' 'zoxide'
-         'zsh-autosuggestions' 'zsh-syntax-highlighting')
+         'zsh-completions'
+         'zsh-autosuggestions'
+         'zsh-syntax-highlighting'
+         'zsh-history-substring-search'
+         'fzf-tab'
+         'zsh-autopair-git'
+         'ttf-jetbrains-mono-nerd')
+optdepends=('fd: faster file search for fzf'
+            'tldr: "help" alias'
+            'btop: "top" alias'
+            'neovim: "vim" alias'
+            'git: git aliases')
 backup=('etc/zsh/zshrc'
         'etc/starship.toml'
         'etc/xdg/fastfetch/config.jsonc')
 source=('zshrc' 'starship.toml' 'fastfetch.jsonc' 'logo.txt' 'opsec-level.sh')
-sha256sums=('10a3b1a6f8fa049eb72a46776ff480bf974a7ec480ab6224b2948eb6c408a087'
+sha256sums=('34fdbb5d78e3496f948f2c2e4bada40b7646245670d275ede4a8a0db3632687a'
             'f0c10387cfe38fa96d9d532540d111a4f5986dbd47528e12ac1e8916972d6a53'
-            '758ff36eb25c358b8aba0a6468f628c3808edb737ebf3d8ffc5c62a2bf9d8e64'
+            '6fbd39c40c171d6a94be713350268422e5628cc7a7223d1074095122168dee6e'
             '6e98a07d5b3fa15b66bcae26ccc4d1e1c1cc40945679d12b347d7247b8e831a0'
-            'b3895008cb569b5118bd6d1d4315bdab2a595e1726b6ffe95b793d0eb4aae594')
+            'ef3fd31019dfe8a53c4d8c662ed5611e655af01bb57b3290e6658137ffd8acb6')
 
 package() {
   install -Dm644 zshrc           "$pkgdir/etc/zsh/zshrc"

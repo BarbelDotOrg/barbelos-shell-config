@@ -38,32 +38,21 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case insensitive
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
 
-# self installing plugin management
-ZSH_PLUGIN_DIR="${ZDOTDIR:-$HOME}/.zsh/plugins"
-mkdir -p "$ZSH_PLUGIN_DIR"
-
-_zsh_plugin_load() {
-    local repo="$1" name="${1##*/}"
-    local dir="$ZSH_PLUGIN_DIR/$name"
-    [[ -d "$dir" ]] || git clone --quiet --depth=1 "https://github.com/$repo" "$dir"
-    local entry
-    for entry in "$dir/$name.plugin.zsh" "$dir/$name.zsh" "$dir/${name#zsh-}.plugin.zsh"; do
-        [[ -f "$entry" ]] && { source "$entry"; return; }
-    done
-}
-
-_zsh_plugin_load "zsh-users/zsh-completions"
-_zsh_plugin_load "zsh-users/zsh-autosuggestions"
-_zsh_plugin_load "Aloxaf/fzf-tab"
-_zsh_plugin_load "hlissner/zsh-autopair" # auto-close quotes/brackets
-_zsh_plugin_load "zsh-users/zsh-syntax-highlighting" # load before history-substring-search
-_zsh_plugin_load "zsh-users/zsh-history-substring-search" # must load last of all
+# pluhgins management
+_src() { [[ -r $1 ]] && source "$1" }
+_src /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
+_src /usr/share/zsh/plugins/zsh-autopair/autopair.zsh
+_src /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+_src /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_src /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # starship
 if command -v starship &> /dev/null; then
+   # let people use their own starship.toml or else use the default one
+   [[ -f ~/.config/starship.toml ]] || export STARSHIP_CONFIG=/etc/starship.toml
     eval "$(starship init zsh)"
 else
     echo "starship not found... mumma..."
@@ -128,7 +117,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias c='clear'
 alias reload='source ~/.zshrc'
-alias vim='nvim 2>/dev/null || vim'
+command -v nvim &>/dev/null && alias vim='nvim'
 
 if command -v git &> /dev/null; then
     alias gs='git status'
