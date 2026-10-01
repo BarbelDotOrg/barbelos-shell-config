@@ -1,0 +1,88 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "file",
+        "source": "/etc/fastfetch/barbelos-logo.txt",
+        "padding": {
+            "top": 1,
+            "right": 2
+        }
+    },
+    "display": {
+        "separator": "",
+        "key": {
+            "width": 18
+        }
+    },
+    "modules": [
+        "title",
+        "separator",
+        {
+            "type": "custom",
+            "format": "System"
+        },
+        {
+            "type": "os",
+            "key": "├─ \uf17c OS"
+        },
+        {
+            "type": "host",
+            "key": "├─ \uf108 Host"
+        },
+        {
+            "type": "kernel",
+            "key": "├─ \uf085 Kernel"
+        },
+        {
+            "type": "uptime",
+            "key": "├─ \uf017 Uptime"
+        },
+        {
+            "type": "packages",
+            "key": "├─ \uf487 Packages"
+        },
+        {
+            "type": "command",
+            "key": "└─ \udb82\udc25 Opsec Level",
+            "text": "./opsec-level.sh"
+        },
+        {
+            "type": "custom",
+            "format": "Desktop"
+        },
+        {
+            "type": "de",
+            "key": "├─ \uf2d0 DE"
+        },
+        {
+            "type": "shell",
+            "key": "├─ \uf120 Shell"
+        },
+        {
+            "type": "terminal",
+            "key": "└─ \uf489 Terminal"
+        },
+        {
+            "type": "custom",
+            "format": "Hardware"
+        },
+        {
+            "type": "cpu",
+            "key": "├─ \uf2db CPU"
+        },
+        {
+            "type": "gpu",
+            "key": "├─ \uf26c GPU"
+        },
+        {
+            "type": "memory",
+            "key": "├─ \uefc5 Memory"
+        },
+        {
+            "type": "disk",
+            "key": "└─ \uf0a0 Disk"
+        },
+        "break",
+        "colors"
+    ]
+}
