@@ -155,6 +155,15 @@ bindkey '\e[1;5C' forward-word
 bindkey '\eOD' backward-word
 bindkey '\eOC' forward-word
 
+# it also lacks delete keys
+bindkey '^[[3~'   delete-char # Delete
+bindkey '^[[3;2~' delete-char # Shift+Delete
+bindkey '^[[3;5~' kill-word # Ctrl+Delete (deletes the next word)
+bindkey '^[[H'  beginning-of-line # Home
+bindkey '^[[F'  end-of-line # End
+bindkey '^[[1~' beginning-of-line # Home (some terminals)
+bindkey '^[[4~' end-of-line # End (some terminals)
+
 # improve completion menu
 zstyle ':fzf-tab:*' fzf-flags --height=60%
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons --color=always $realpath 2>/dev/null'

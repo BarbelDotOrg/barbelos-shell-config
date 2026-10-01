@@ -23,7 +23,7 @@ backup=('etc/zsh/zshrc'
         'etc/starship.toml'
         'etc/xdg/fastfetch/config.jsonc')
 source=('zshrc' 'starship.toml' 'fastfetch.jsonc' 'logo.txt' 'opsec-level.sh')
-sha256sums=('50097884a95b4ed4a2845fbb06eba9597dad000550e0b63bf864c6424c9abddc'
+sha256sums=('33bfad6bb2936a5293592a28eb22c7495b328a59b6bc9b2f2434c11bd0638bc1'
             'f0c10387cfe38fa96d9d532540d111a4f5986dbd47528e12ac1e8916972d6a53'
             '63f5167adb5ec1b99c31ca27eed5a2b5ddafd43712497c1754c3347ebdac8fc7'
             '6e98a07d5b3fa15b66bcae26ccc4d1e1c1cc40945679d12b347d7247b8e831a0'
